@@ -12,7 +12,7 @@ class NetworkManager {
     let url: String = "https://api.unsplash.com"
     //photos/random
     
-    func sendRequest(query: String){
+    func sendRequest(query: String, completion: @escaping (String) -> Void){
         var urlComponents = URLComponents(string: url)
         urlComponents?.path = "/photos/random"
         
@@ -34,7 +34,14 @@ class NetworkManager {
             }
             
             guard let data = data else { return }
-            print(String(decoding: data, as: UTF8.self))
+            
+            do{
+                let result = try JSONDecoder().decode(Response.self, from: data)
+                completion(result.urls.regular)
+            }
+            catch{
+                print(error.localizedDescription)
+            }
         }.resume()
     }
     
