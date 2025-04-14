@@ -8,7 +8,7 @@
 import Foundation
 
 class NetworkManager {
-    let apiKey: String = ""
+    let apiKey: String = "M_aNbXuIj6hcdUzpjRxZwQRVbIKfjXedhk82WGHqvMI"
     let url: String = "https://api.unsplash.com"
     //photos/random
     
@@ -17,9 +17,9 @@ class NetworkManager {
         urlComponents?.path = "/photos/random"
         
         urlComponents?.queryItems = [
-            URLQueryItem(name: "", value: ""),
-            URLQueryItem(name: "", value: ""),
-            URLQueryItem(name: "", value: "")
+            URLQueryItem(name: "client_id", value: "YqTlI7vTvZf2lQoUGz9iO54SDuziNICON3_YV6tiGr4"), //access key
+            URLQueryItem(name: "query", value: query),
+            URLQueryItem(name: "orientation", value: "landscape")
         ]
         
         guard let url = urlComponents?.url else { return }
